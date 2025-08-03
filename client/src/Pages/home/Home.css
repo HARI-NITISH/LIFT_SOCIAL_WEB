@@ -1,0 +1,22 @@
+.Home {
+    display: flex;
+    background: var(--primaryBlack);
+    min-height: 100vh;
+}
+
+.home-content {
+    flex: 1;
+    margin-left: 280px;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    background: var(--secondaryBlack);
+}
+
+@media (max-width: 768px) {
+    .home-content {
+        margin-left: 0;
+        margin-bottom: 80px;
+        padding: 1rem;
+    }
+}

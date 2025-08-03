@@ -1,0 +1,85 @@
+:root {
+  /* Dark Theme Variables */
+  --primaryBlack: #0a0a0a;
+  --secondaryBlack: #1a1a1a;
+  --darkGray: #2a2a2a;
+  --mediumGray: #3a3a3a;
+  --lightGray: #4a4a4a;
+  --textPrimary: #e0e0e0;
+  --textSecondary: #b0b0b0;
+  --textMuted: #808080;
+  --accentDark: #333333;
+  --borderDark: rgba(255, 255, 255, 0.1);
+  --shadowDark: 0px 4px 20px rgba(0, 0, 0, 0.5);
+  --cardDark: rgba(26, 26, 26, 0.8);
+  --buttonDark: linear-gradient(98.63deg, #333333 10%, #1a1a1a 100%);
+  --inputDark: rgba(42, 42, 42, 0.8);
+  --hoverDark: #404040;
+  
+  /* Legacy variables for compatibility */
+  --lightPurple: #666666;
+  --darkPurple: #333333;
+  --purplePain: #2a2a2a;
+  --yellow: #666666;
+  --orange: #555555;
+  --black: var(--textPrimary);
+  --gray: rgba(58, 58, 58, 0.65);
+  --profileShadow: var(--shadowDark);
+  --hrColor: var(--borderDark);
+  --cardColor: var(--cardDark);
+  --buttonBg: var(--buttonDark);
+  --inputColor: var(--inputDark);
+  --photo: #4a4a4a;
+  --video: #3a3a3a;
+  --location: #555555;
+  --shedule: #666666;
+}
+
+
+.App {
+  overflow: hidden;
+  color: var(--textPrimary);
+  background: var(--primaryBlack);
+  padding: 1rem 1rem;
+  min-height: 100vh;
+}
+
+.blur{
+  position: absolute;
+  width: 22rem;
+  height: 14rem;
+  border-radius: 50%;
+  background: var(--darkGray);
+  filter: blur(72px);
+  opacity: 0.3;
+}
+
+.button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--textPrimary);
+  background: var(--buttonDark);
+  border: 1px solid var(--borderDark);
+  border-radius: 0.5rem;
+  transition: all 200ms ease-out;
+}
+
+.button:hover{
+  cursor: pointer;
+  background: var(--hoverDark);
+  border-color: var(--textMuted);
+  transform: translateY(-1px);
+}
+
+.button:disabled{
+  background: var(--mediumGray);
+  color: var(--textMuted);
+  border: 1px solid var(--borderDark);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+::-webkit-scrollbar {
+  display: none; 
+}

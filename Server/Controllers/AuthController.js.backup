@@ -1,0 +1,149 @@
+import UserModel from '../Models/userModel.js';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+// In-memory storage for when MongoDB is not available
+let inMemoryUsers = [];
+
+// Helper function to check if MongoDB is available
+const isMongoAvailable = async () => {
+    try {
+        await UserModel.findOne({}).limit(1);
+        return true;
+    } catch (error) {
+        return false;
+    }
+};
+
+
+// register new users
+export const registerUser = async (req, res) => {
+    const { 
+        email, 
+        password, 
+        firstname, 
+        lastname, 
+        age, 
+        bodyWeight, 
+        height, 
+        fitnessGoals, 
+        experienceLevel 
+    } = req.body;
+
+    try {
+        const mongoAvailable = await isMongoAvailable();
+        
+        if (mongoAvailable) {
+            // Use MongoDB
+            const oldUser = await UserModel.findOne({ email });
+            if (oldUser) {
+                return res.status(400).json({ message: "User already exists with this email!" });
+            }
+        } else {
+            // Use in-memory storage
+            const existingUser = inMemoryUsers.find(user => user.email === email);
+            if (existingUser) {
+                return res.status(400).json({ message: "User already exists with this email!" });
+            }
+        }
+
+        // Hash password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPass = await bcrypt.hash(password.toString(), parseInt(salt));
+
+        // Create new user object with fitness data
+        const newUserData = {
+            _id: mongoAvailable ? undefined : Date.now().toString(),
+            email,
+            password: hashedPass,
+            firstname,
+            lastname,
+            age: age ? parseInt(age) : undefined,
+            bodyWeight: bodyWeight ? parseInt(bodyWeight) : undefined,
+            height: height ? parseInt(height) : undefined,
+            fitnessGoals: fitnessGoals || 'general_fitness',
+            experienceLevel: experienceLevel || 'beginner',
+            eloRating: 1200, // Starting ELO rating
+            about: `Hi! I'm ${firstname} ${lastname}. Welcome to my fitness journey!`,
+            profileVisibility: 'public',
+            workoutStreak: 0,
+            totalWorkouts: 0,
+            personalRecords: {
+                bench: 0,
+                squat: 0,
+                deadlift: 0
+            }
+        };
+
+        let savedUser;
+        if (mongoAvailable) {
+            const newUser = new UserModel(newUserData);
+            savedUser = await newUser.save();
+        } else {
+            // Save to in-memory storage
+            inMemoryUsers.push(newUserData);
+            savedUser = newUserData;
+        }
+        
+        // Create JWT token
+        const token = jwt.sign(
+            { email: savedUser.email, id: savedUser._id }, 
+            process.env.JWT_KEY,
+            { expiresIn: '7d' }
+        );
+        
+        // Remove password from response
+        const userResponse = mongoAvailable ? { ...savedUser._doc } : { ...savedUser };
+        delete userResponse.password;
+        
+        res.status(200).json({ user: userResponse, token });
+    } catch (error) {
+        console.error('Registration error:', error);
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
+// Login users
+export const loginUser = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const mongoAvailable = await isMongoAvailable();
+        let user;
+
+        if (mongoAvailable) {
+            // Use MongoDB
+            user = await UserModel.findOne({ email: email });
+        } else {
+            // Use in-memory storage
+            user = inMemoryUsers.find(u => u.email === email);
+        }
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found. Please check your email." });
+        }
+
+        const validity = await bcrypt.compare(password, user.password);
+
+        if (!validity) {
+            return res.status(400).json({ message: "Invalid password. Please try again." });
+        }
+
+        // Create JWT token
+        const token = jwt.sign(
+            { email: user.email, id: user._id }, 
+            process.env.JWT_KEY,
+            { expiresIn: '7d' }
+        );
+
+        // Remove password from response
+        const userResponse = mongoAvailable ? { ...user._doc } : { ...user };
+        delete userResponse.password;
+
+        res.status(200).json({ user: userResponse, token });
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ message: "Server error. Please try again later." });
+    }
+}

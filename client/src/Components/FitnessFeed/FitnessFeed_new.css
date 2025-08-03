@@ -1,0 +1,285 @@
+.fitness-feed {
+    max-width: 470px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 0;
+    min-height: 100vh;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 1.2rem;
+}
+
+/* Stories Section */
+.stories-container {
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.stories-scroll {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.stories-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.story-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 66px;
+    cursor: pointer;
+}
+
+.story-avatar {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    padding: 2px;
+    margin-bottom: 4px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.story-avatar.has-story {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.story-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+}
+
+.story-username {
+    font-size: 12px;
+    color: #262626;
+    max-width: 74px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Posts Section */
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.post-card {
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Post Header */
+.post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid #efefef;
+}
+
+.post-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.post-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post-user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-username {
+    font-size: 14px;
+    font-weight: 600;
+    color: #262626;
+    text-decoration: none;
+}
+
+.post-location {
+    font-size: 11px;
+    color: #8e8e8e;
+}
+
+.post-options {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #262626;
+    padding: 8px;
+}
+
+/* Post Image */
+.post-image {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+}
+
+.post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Post Actions */
+.post-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px 8px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 8px;
+    transition: opacity 0.2s ease;
+}
+
+.action-btn:hover {
+    opacity: 0.7;
+}
+
+.like-btn.liked {
+    color: #ed4956;
+}
+
+.bookmark-btn {
+    margin-left: auto;
+}
+
+/* Post Likes */
+.post-likes {
+    padding: 0 16px 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #262626;
+}
+
+/* Post Caption */
+.post-caption {
+    padding: 0 16px 8px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #262626;
+}
+
+.caption-username {
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.caption-text {
+    font-weight: 400;
+}
+
+/* Post Time */
+.post-time {
+    padding: 0 16px 12px;
+    font-size: 10px;
+    color: #8e8e8e;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+}
+
+/* Add Comment */
+.add-comment {
+    display: flex;
+    align-items: center;
+    padding: 6px 16px 6px;
+    border-top: 1px solid #efefef;
+    gap: 12px;
+}
+
+.add-comment input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #262626;
+    background: transparent;
+    padding: 12px 0;
+}
+
+.add-comment input::placeholder {
+    color: #8e8e8e;
+}
+
+.add-comment button {
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 12px 0;
+}
+
+.add-comment button:hover {
+    color: #00376b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .fitness-feed {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .stories-container,
+    .post-card {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+    
+    .stories-container {
+        margin-bottom: 0;
+        border-bottom: 8px solid #fafafa;
+    }
+    
+    .posts-container {
+        gap: 0;
+    }
+    
+    .post-card {
+        margin-bottom: 8px;
+        border-bottom: 8px solid #fafafa;
+    }
+}

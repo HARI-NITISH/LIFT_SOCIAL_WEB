@@ -1,0 +1,368 @@
+.profile-container {
+    display: flex;
+    background: var(--primaryBlack);
+    min-height: 100vh;
+}
+
+.profile-page {
+    flex: 1;
+    margin-left: 250px;
+    padding: 0;
+    color: var(--textPrimary);
+    overflow-y: auto;
+    background: var(--secondaryBlack);
+}
+
+/* Profile Header */
+.profile-header {
+    background: var(--cardDark);
+    border-radius: 0 0 20px 20px;
+    box-shadow: var(--shadowDark);
+    margin-bottom: 30px;
+    overflow: hidden;
+    border: 1px solid var(--borderDark);
+}
+
+.profile-cover {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    padding: 0 40px 30px 40px;
+    position: relative;
+}
+
+.profile-picture-section {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: -60px;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+}
+
+.edit-profile-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.profile-details {
+    text-align: left;
+}
+
+.profile-name {
+    margin: 0 0 10px 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--black);
+}
+
+.profile-bio {
+    margin: 0 0 25px 0;
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--black);
+    display: block;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 5px;
+}
+
+/* Profile Content */
+.profile-content {
+    padding: 0 40px 40px 40px;
+}
+
+.content-section {
+    margin-bottom: 40px;
+}
+
+.content-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--black);
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Fitness Overview */
+.fitness-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.overview-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.overview-card h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--black);
+}
+
+.pr-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pr-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pr-item:last-child {
+    border-bottom: none;
+}
+
+.pr-item span:first-child {
+    color: #666;
+    font-weight: 500;
+}
+
+.pr-item span:last-child {
+    color: var(--black);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.month-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.month-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.month-stat:last-child {
+    border-bottom: none;
+}
+
+.month-stat span:first-child {
+    color: #666;
+    font-weight: 500;
+}
+
+.month-stat span:last-child {
+    color: var(--black);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* Posts Grid */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.post-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px 10px 20px;
+}
+
+.post-type {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-icon {
+    font-size: 1.2rem;
+}
+
+.post-timestamp {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.post-action-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.post-action-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.post-content {
+    padding: 0 20px 15px 20px;
+}
+
+.post-content p {
+    margin: 0 0 15px 0;
+    line-height: 1.5;
+    color: var(--black);
+}
+
+.post-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.post-footer {
+    padding: 15px 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.post-engagement {
+    display: flex;
+    gap: 20px;
+}
+
+.engagement-btn {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #666;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.engagement-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--black);
+}
+
+.engagement-btn span:first-child {
+    font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-page {
+        margin-left: 0;
+        padding: 0;
+    }
+
+    .profile-info {
+        padding: 0 20px 20px 20px;
+    }
+
+    .profile-picture-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-top: -60px;
+    }
+
+    .profile-stats {
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .fitness-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .posts-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .profile-content {
+        padding: 0 20px 40px 20px;
+    }
+
+    .overview-card {
+        padding: 20px;
+    }
+}
